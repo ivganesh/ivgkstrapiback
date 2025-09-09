@@ -1,0 +1,43 @@
+name: Build and Deploy Strapi
+on:
+  push:
+    branches: [ "main" ]
+env:
+  IMAGE_NAME: ghcr.io/ivganesh/ivgk-strapi
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: VPS_HOST
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - run: docker build -t $IMAGE_NAME:latest .
+      - run: docker push $IMAGE_NAME:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: VPS_HOST
+    steps:
+      - name: SSH to VPS and deploy
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            set -e
+            docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+            cd /opt/ivgk-strapi
+            docker compose pull strapi
+            docker compose up -d strapi
+            docker image prune -f
