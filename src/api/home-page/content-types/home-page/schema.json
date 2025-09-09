@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "site": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::site.site"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.rich-text",
+        "sections.hero"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": true
+    }
+  }
+}
