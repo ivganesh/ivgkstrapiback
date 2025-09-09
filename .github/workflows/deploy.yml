@@ -3,7 +3,7 @@ on:
   push:
     branches: [ "main" ]
 env:
-  IMAGE_NAME: ghcr.io/ivganesh/ivgk-strapi
+  IMAGE_NAME: ghcr.io/ivganesh/ivgkstrapiback
 
 jobs:
   build-and-push:
