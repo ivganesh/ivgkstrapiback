@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "instagram_posts",
+  "info": {
+    "singularName": "instagram-post",
+    "pluralName": "instagram-posts",
+    "displayName": "Instagram Post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "required": true
+    },
+    "caption": {
+      "type": "text"
+    },
+    "instagramUrl": {
+      "type": "string"
+    },
+    "isShopable": {
+      "type": "boolean",
+      "default": false
+    },
+    "relatedProducts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product"
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
+

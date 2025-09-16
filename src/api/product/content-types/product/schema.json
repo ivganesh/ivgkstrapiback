@@ -33,6 +33,24 @@
         "videos",
         "audios"
       ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "products"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "stock": {
+      "type": "integer",
+      "default": 0
     }
   }
 }
