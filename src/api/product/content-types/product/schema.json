@@ -12,45 +12,93 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
     "price": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true,
+      "min": 0
     },
-    "descrption": {
-      "type": "blocks"
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true
     },
     "image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
+      ],
+      "required": true
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
       ]
     },
     "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "products"
+      "type": "enumeration",
+      "enum": [
+        "Casual",
+        "Formal",
+        "Festive",
+        "Work"
+      ],
+      "required": true
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "required": true
+    },
+    "color": {
+      "type": "string"
+    },
+    "material": {
+      "type": "string",
+      "default": "100% Cotton",
+      "required": true
     },
     "isFeatured": {
       "type": "boolean",
       "default": false
     },
-    "isActive": {
+    "inStock": {
       "type": "boolean",
-      "default": true
+      "default": true,
+      "required": true
     },
-    "stock": {
+    "stockQuantity": {
       "type": "integer",
-      "default": 0
+      "min": 0,
+      "default": 0,
+      "required": true
+    },
+    "tags": {
+      "type": "string"
+    },
+    "seoTitle": {
+      "type": "string"
+    },
+    "seoDescription": {
+      "type": "text"
     }
   }
 }

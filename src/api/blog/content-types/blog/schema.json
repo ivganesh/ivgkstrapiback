@@ -20,10 +20,12 @@
       "targetField": "title"
     },
     "excerpt": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "content": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "featuredImage": {
       "type": "media",
@@ -33,17 +35,41 @@
       ]
     },
     "author": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "publishedAt": {
-      "type": "datetime"
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Styling Tips",
+        "Fabric Guide",
+        "Sustainability",
+        "Fashion History",
+        "Care Guide",
+        "Wardrobe Planning"
+      ],
+      "required": true
     },
     "tags": {
-      "type": "json"
+      "type": "string"
+    },
+    "readTime": {
+      "type": "string",
+      "required": true
     },
     "isFeatured": {
       "type": "boolean",
       "default": false
+    },
+    "publishedAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "seoTitle": {
+      "type": "string"
+    },
+    "seoDescription": {
+      "type": "text"
     }
   }
 }
