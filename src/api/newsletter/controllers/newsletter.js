@@ -10,3 +10,7 @@ module.exports = createCoreController('api::newsletter.newsletter');
 
 
 
+
+
+
+
